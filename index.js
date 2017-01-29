@@ -4,6 +4,7 @@ var path = require('path');
 var fs = require('fs');
 var when = require('when');
 var whenNodefn = require('when/node/function');
+var nib = require('nib')
 
 var CachedPathEvaluator = require('./lib/evaluator');
 var PathCache = require('./lib/pathcache');
@@ -66,6 +67,8 @@ module.exports = function(source) {
           throw new Error('Plugin should be a function');
         }
       });
+    } else if (key ==='useNib') {
+      styl.use(nib())
     } else if (key === 'set') {
       for (var name in value) {
         styl.set(name, value[name]);
